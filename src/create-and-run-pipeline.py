@@ -10,18 +10,24 @@ from azure.ai.ml import Input                       # Specify inputs to ML jobs
 from azure.ai.ml.constants import AssetTypes        # Provide standarized identifiers for assets
 
 
-# Condigure credentials
-try:
-    credential = DefaultAzureCredential()
-    # Check if given credential can get token successfully.
-    credential.get_token("https://management.azure.com/.default")
-except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential not work
-    credential = InteractiveBrowserCredential()
+# # Condigure credentials
+# try:
+#     credential = DefaultAzureCredential()
+#     # Check if given credential can get token successfully.
+#     credential.get_token("https://management.azure.com/.default")
+# except Exception as ex:
+#     # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential not work
+#     credential = InteractiveBrowserCredential()
 
 
 # Get a handle to workspace
-ml_client = MLClient.from_config(credential=credential)
+ml_client = ws = MLClient(
+    DefaultAzureCredential(),
+    subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
+    resource_group_name="RG-ADA-MLOPS-POC",
+    workspace_name="azu-ml-ada-mlops-poc",
+)
+
 # Retrieve an already attached Azure Machine Learning Compute
 cpu_compute_target = "default-compute-poc"
 
