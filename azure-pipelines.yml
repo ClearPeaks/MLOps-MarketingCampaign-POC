@@ -10,10 +10,17 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.10'
+  displayName: 'Use Python 3.10'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    python -m pip install --upgrade pip
+    pip install azure-ai-ml
+    pip install azure-identity
+  displayName: 'Install AzureML dependencies'
+
+- script: |
+    python src/create-and-run-pipeline.py
+  displayName: 'Create and Execute Azure Pipeline'
