@@ -31,7 +31,7 @@ steps:
   displayName: Azure CLI
   inputs:
     azureSubscription: 'ml-service-connection'
-    scriptType: 'ps'
+    scriptType: 'batch'
     scriptLocation: 'inlineScript'
     inlineScript: |
       az --version
