@@ -20,6 +20,11 @@ steps:
     pip install azure-ai-ml
     pip install azure-identity
     pip install mldesigner
+    pip install pandas
+    pip install numpy
+    pip install scikit-learn
+    pip install datetime
+    pip install joblib
   displayName: 'Install AzureML dependencies'
 
 - script: |
