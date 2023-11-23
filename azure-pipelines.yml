@@ -17,8 +17,9 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip install azureml-sdk
-  displayName: 'Install AzureML SDK'
+    pip install azure-ai-ml
+    pip install azure-identity
+  displayName: 'Install AzureML dependencies'
 
 - script: |
     python src/create-and-run-pipeline.py
