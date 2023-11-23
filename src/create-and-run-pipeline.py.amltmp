@@ -21,7 +21,7 @@ from azure.ai.ml.constants import AssetTypes        # Provide standarized identi
 
 
 # Get a handle to workspace
-ml_client = ws = MLClient(
+ml_client = MLClient(
     DefaultAzureCredential(),
     subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
     resource_group_name="RG-ADA-MLOPS-POC",
