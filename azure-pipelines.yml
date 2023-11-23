@@ -27,16 +27,6 @@ steps:
     pip install joblib
   displayName: 'Install AzureML dependencies'
 
-- task: AzureCLI@2
-  displayName: Azure CLI
-  inputs:
-    azureSubscription: 'ml-service-connection'
-    scriptType: 'batch'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      az --version
-      az account show
-
 - script: |
     python src/create-and-run-pipeline.py
   displayName: 'Create and Execute Azure Pipeline'
