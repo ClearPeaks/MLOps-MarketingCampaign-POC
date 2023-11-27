@@ -43,7 +43,7 @@ steps:
     azureSubscription: 'ml-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az login --service-principal -u  $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId'
+    inlineScript: 'az login --service-principal -u $(servicePrincipalId) -p $(servicePrincipalKey) --tenant $(tenantId)'
     addSpnToEnvironment: true
 
 - script: |
