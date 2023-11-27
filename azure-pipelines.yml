@@ -43,10 +43,10 @@ steps:
     azureSubscription: 'ml-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az login --service-principal -u $(servicePrincipalId) -p $(servicePrincipalKey) --tenant $(tenantId)'
-    addSpnToEnvironment: true
+    inlineScript: 'python src/create-and-run-pipeline.py'
+    #addSpnToEnvironment: true
 
-- script: |
-    python src/create-and-run-pipeline.py
-  displayName: 'Create and Execute Azure Pipeline'
+# - script: |
+#     python src/create-and-run-pipeline.py
+#   displayName: 'Create and Execute Azure Pipeline'
 
