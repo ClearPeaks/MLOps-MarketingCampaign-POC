@@ -9,6 +9,8 @@ from azure.ai.ml import load_component      # Load Azure ML components
 from azure.ai.ml import Input                       # Specify inputs to ML jobs
 from azure.ai.ml.constants import AssetTypes        # Provide standarized identifiers for assets
 
+import os
+
 
 # # Condigure credentials
 # try:
