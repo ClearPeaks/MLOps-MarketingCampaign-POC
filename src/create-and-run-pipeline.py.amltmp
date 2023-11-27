@@ -23,15 +23,15 @@ import os
 #     credential = InteractiveBrowserCredential()
 
 # Get the service principal details from the environment variables
-tenant_id = os.environ['TENANT_ID']
-client_id = os.environ['SERVICE_PRINCIPAL_ID']
-client_secret = os.environ['SERVICE_PRINCIPAL_KEY']
+# tenant_id = os.environ['TENANT_ID']
+# client_id = os.environ['SERVICE_PRINCIPAL_ID']
+# client_secret = os.environ['SERVICE_PRINCIPAL_KEY']
 
-credential = ClientSecretCredential(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
+# credential = ClientSecretCredential(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
 
 # Get a handle to workspace
 ml_client = MLClient(
-    credential,
+    DefaultAzureCredential(),
     subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
     resource_group_name="RG-ADA-MLOPS-POC",
     workspace_name="azu-ml-ada-mlops-poc",
