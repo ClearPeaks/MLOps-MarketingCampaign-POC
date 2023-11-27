@@ -27,15 +27,23 @@ steps:
     pip install joblib
   displayName: 'Install AzureML dependencies'
 
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'ml-service-connection'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: |
+#       echo "##vso[task.setvariable variable=AZURE_CLIENT_ID;]$servicePrincipalId"
+#       echo "##vso[task.setvariable variable=AZURE_CLIENT_SECRET;]$servicePrincipalKey"
+#       echo "##vso[task.setvariable variable=AZURE_TENANT_ID;]$tenantId"
+#     addSpnToEnvironment: true
+
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'ml-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: |
-      echo "##vso[task.setvariable variable=AZURE_CLIENT_ID;]$servicePrincipalId"
-      echo "##vso[task.setvariable variable=AZURE_CLIENT_SECRET;]$servicePrincipalKey"
-      echo "##vso[task.setvariable variable=AZURE_TENANT_ID;]$tenantId"
+    inlineScript: 'az login --service-principal -u  $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId'
     addSpnToEnvironment: true
 
 - script: |
