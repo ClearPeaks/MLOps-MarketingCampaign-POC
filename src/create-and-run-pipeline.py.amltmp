@@ -10,24 +10,6 @@ from azure.ai.ml import load_component      # Load Azure ML components
 from azure.ai.ml import Input                       # Specify inputs to ML jobs
 from azure.ai.ml.constants import AssetTypes        # Provide standarized identifiers for assets
 
-import os
-
-
-# # Condigure credentials
-# try:
-#     credential = DefaultAzureCredential()
-#     # Check if given credential can get token successfully.
-#     credential.get_token("https://management.azure.com/.default")
-# except Exception as ex:
-#     # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential not work
-#     credential = InteractiveBrowserCredential()
-
-# Get the service principal details from the environment variables
-# tenant_id = os.environ['TENANT_ID']
-# client_id = os.environ['SERVICE_PRINCIPAL_ID']
-# client_secret = os.environ['SERVICE_PRINCIPAL_KEY']
-
-# credential = ClientSecretCredential(tenant_id=tenant_id, client_id=client_id, client_secret=client_secret)
 
 # Get a handle to workspace
 ml_client = MLClient(
@@ -36,6 +18,7 @@ ml_client = MLClient(
     resource_group_name="RG-ADA-MLOPS-POC",
     workspace_name="azu-ml-ada-mlops-poc",
 )
+
 
 # Retrieve an already attached Azure Machine Learning Compute
 cpu_compute_target = "default-compute-poc"
