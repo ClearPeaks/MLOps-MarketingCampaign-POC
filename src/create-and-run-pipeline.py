@@ -1,5 +1,6 @@
 # Library imports
 from azure.identity import DefaultAzureCredential           # Simplified way to obtain credentials
+from azure.identity import ClientSecretCredential
 from azure.identity import InteractiveBrowserCredential     # When authentication is done through a web browser
 
 from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
