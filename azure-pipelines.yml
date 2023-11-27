@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -27,26 +22,12 @@ steps:
     pip install joblib
   displayName: 'Install AzureML dependencies'
 
-# - task: AzureCLI@2
-#   inputs:
-#     azureSubscription: 'ml-service-connection'
-#     scriptType: 'bash'
-#     scriptLocation: 'inlineScript'
-#     inlineScript: |
-#       echo "##vso[task.setvariable variable=AZURE_CLIENT_ID;]$servicePrincipalId"
-#       echo "##vso[task.setvariable variable=AZURE_CLIENT_SECRET;]$servicePrincipalKey"
-#       echo "##vso[task.setvariable variable=AZURE_TENANT_ID;]$tenantId"
-#     addSpnToEnvironment: true
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'ml-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: 'python src/create-and-run-pipeline.py'
-    #addSpnToEnvironment: true
+  displayName: 'Execute Azure ML Pipeline'
 
-# - script: |
-#     python src/create-and-run-pipeline.py
-#   displayName: 'Create and Execute Azure Pipeline'
 
