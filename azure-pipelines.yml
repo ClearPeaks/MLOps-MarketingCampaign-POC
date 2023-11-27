@@ -12,15 +12,8 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip install azure-ai-ml
-    pip install azure-identity
-    pip install mldesigner
-    pip install pandas
-    pip install numpy
-    pip install scikit-learn
-    pip install datetime
-    pip install joblib
-  displayName: 'Install AzureML dependencies'
+    pip install -r requirements.txt
+  displayName: 'Install Azure ML Pipeline Dependencies'
 
 - task: AzureCLI@2
   inputs:
@@ -29,5 +22,3 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 'python src/create-and-run-pipeline.py'
   displayName: 'Execute Azure ML Pipeline'
-
-
