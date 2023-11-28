@@ -1,7 +1,6 @@
 # Library imports
+# ======================================================================================================
 from azure.identity import DefaultAzureCredential           # Simplified way to obtain credentials
-from azure.identity import ClientSecretCredential
-from azure.identity import InteractiveBrowserCredential     # When authentication is done through a web browser
 
 from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
 from azure.ai.ml.dsl import pipeline        # Define machine learning pipelines
@@ -12,6 +11,7 @@ from azure.ai.ml.constants import AssetTypes        # Provide standarized identi
 
 
 # Get a handle to workspace
+# ======================================================================================================
 ml_client = MLClient(
     DefaultAzureCredential(),
     subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
@@ -19,12 +19,12 @@ ml_client = MLClient(
     workspace_name="azu-ml-ada-mlops-poc",
 )
 
-
-# Retrieve an already attached Azure Machine Learning Compute
+# Define te compute that is going to be used to run the pipeline
 cpu_compute_target = "default-compute-poc"
 
 
 # Prepare data
+# ======================================================================================================
 available_data = Input(
     type=AssetTypes.URI_FILE,
     path="azureml:data_available:2"
@@ -32,6 +32,7 @@ available_data = Input(
 
 
 # Load components
+# ======================================================================================================
 components = []
 
 from feature_selection.feature_selection_component import feature_selection_component
@@ -63,6 +64,7 @@ components.append(['scoring', scoring_component])
 
 
 # Build pipeline
+# ======================================================================================================
 @pipeline(
     default_compute=cpu_compute_target,
 )
@@ -98,17 +100,19 @@ def marketing_campaign_prediction(pipeline_input_data):
                                      y_test_input=split_data_node.outputs.y_test_data,
                                      model_input=training_node.outputs.model_output)
 
-# create a pipeline
+# Instantiate the pipeline
 pipeline_job = marketing_campaign_prediction(pipeline_input_data=available_data)
 
 
 # Submit pipeline
+# ======================================================================================================
 pipeline_job = ml_client.jobs.create_or_update(
     pipeline_job, experiment_name="marketing_pipeline_test_3"
 )
 
 
 # Register components
+# ======================================================================================================
 for component in components:
     try:
         # try get back the component
