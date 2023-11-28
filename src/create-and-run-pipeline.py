@@ -114,9 +114,4 @@ pipeline_job = ml_client.jobs.create_or_update(
 # Register components
 # ======================================================================================================
 for component in components:
-    # try:
-    #     # try get back the component
-    #     retrieved_component = ml_client.components.get(name=component[0], version="1")
-    # except:
-    #     # if not exists, register component using following code
     retrieved_component = ml_client.components.create_or_update(component[1])
