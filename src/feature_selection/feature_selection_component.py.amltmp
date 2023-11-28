@@ -26,7 +26,7 @@ def feature_selection_component(
     remove_list = ['ID', 'Year_Birth', 'NumDealsPurchases', 'NumStorePurchases',
                    'NumWebVisitsMonth', 'Complain', 'Z_CostContact', 'Z_Revenue']
     
-    # Deleting the selected variables from the dataset
+    # Deleting the previously selected variables from the dataset
     data_selected = data.drop(remove_list, axis=1)
 
     # Saving to output path
