@@ -19,14 +19,15 @@ from mlflow.tracking import MlflowClient
     ),
 )
 
-# Set names
-model_name = "MC-Response-Predictor"
-
 def training_component(
     X_train_input: Input(type='uri_file'),
     y_train_input: Input(type='uri_file'),
     model_output: Output(type='uri_file'),
 ):
+
+    # Set names
+    model_name = "MC-ResponsePredictor"
+
     # Read data from input paths
     X_train = pd.read_csv(X_train_input, sep=';')
     y_train = pd.read_csv(y_train_input, sep=';')
