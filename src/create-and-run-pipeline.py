@@ -20,7 +20,7 @@ ml_client = MLClient(
 )
 
 # Define te compute that is going to be used to run the pipeline
-cpu_compute_target = "default-compute-poc"
+cpu_compute_target = "shared-compute-poc"
 
 
 # Prepare data
