@@ -5,7 +5,6 @@ import pandas as pd
 
 @command_component(
     name="encoding",
-    version="1",
     display_name="Encoding",
     description="Performs the encoding of the categorical variables in the dataset.",
     environment=dict(

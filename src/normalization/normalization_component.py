@@ -7,7 +7,6 @@ from sklearn.preprocessing import StandardScaler
 
 @command_component(
     name="normalization",
-    version="1",
     display_name="Normalization",
     description="Normalizes the data.",
     environment=dict(

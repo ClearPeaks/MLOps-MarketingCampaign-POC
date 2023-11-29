@@ -5,7 +5,6 @@ import pandas as pd
 
 @command_component(
     name="feature_selection",
-    version="1",
     display_name="Feature Selection",
     description="Selects the relevant features for the model.",
     environment=dict(

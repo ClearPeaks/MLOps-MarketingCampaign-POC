@@ -8,7 +8,6 @@ import joblib
 
 @command_component(
     name="training",
-    version="1",
     display_name="Training",
     description="Trains the model",
     environment=dict(

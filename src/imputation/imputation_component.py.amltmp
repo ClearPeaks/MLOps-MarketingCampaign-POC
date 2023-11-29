@@ -8,7 +8,6 @@ from sklearn.impute import IterativeImputer
 
 @command_component(
     name="imputation",
-    version="1",
     display_name="Imputation",
     description="Imputes the missing values",
     environment=dict(

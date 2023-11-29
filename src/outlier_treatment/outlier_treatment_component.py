@@ -6,7 +6,6 @@ import numpy as np
 
 @command_component(
     name="outlier_treatment",
-    version="1",
     display_name="Outlier Treatment",
     description="Deals with the outliers in the data.",
     environment=dict(

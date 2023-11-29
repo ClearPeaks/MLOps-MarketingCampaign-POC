@@ -10,7 +10,6 @@ from sklearn.metrics import accuracy_score
 
 @command_component(
     name="scoring",
-    version="1",
     display_name="Scoring",
     description="Tests the performance of the model.",
     environment=dict(

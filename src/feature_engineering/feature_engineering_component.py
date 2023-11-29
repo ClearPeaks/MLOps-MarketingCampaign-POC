@@ -6,7 +6,6 @@ from datetime import datetime
 
 @command_component(
     name="feature_engineering",
-    version="1",
     display_name="Feature Engineering",
     description="Transforms some features of the dataset.",
     environment=dict(
@@ -31,7 +30,7 @@ def feature_engineering_component(
     # Dt_Customer ==========================================
     # ======================================================
 
-    # Convert to datetime
+    # Convert to datetime format
     date_objects = [datetime.strptime(date_str, "%Y-%m-%d") for date_str in data['Dt_Customer']]
 
     # The target date

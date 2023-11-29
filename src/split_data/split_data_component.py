@@ -6,7 +6,6 @@ from sklearn.model_selection import train_test_split
 
 @command_component(
     name="split_data",
-    version="1",
     display_name="Split Data",
     description="Performs the train-test split of the data.",
     environment=dict(
