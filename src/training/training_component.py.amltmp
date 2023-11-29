@@ -6,6 +6,9 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
+import mlflow
+from mlflow.tracking import MlflowClient
+
 @command_component(
     name="training",
     display_name="Training",
@@ -15,6 +18,9 @@ import joblib
         image="mcr.microsoft.com/azureml/curated/sklearn-1.1:17",
     ),
 )
+
+# Set names
+model_name = "MC-Response-Predictor"
 
 def training_component(
     X_train_input: Input(type='uri_file'),
@@ -28,10 +34,23 @@ def training_component(
     # Initialize model
     rf_model = RandomForestClassifier(n_estimators = 100, random_state=42)
 
-    # Fit model
-    rf_model.fit(X_train, y_train)
+    # Start MLflow run
+    with mlflow.start_run():
 
-    # Save model to the output path
-    joblib.dump(rf_model, model_output)
+        # Fit model
+        rf_model.fit(X_train, y_train)
+
+        # Log model params
+        mlflow.log_params(rf_model.get_params())
+
+        # Save model to the output path
+        joblib.dump(rf_model, model_output)
+
+        # Log the model
+        mlflow.sklearn.log_model(rf_model, "model")
+
+        # Register the model
+        mlflow.register_model(
+            "runs:/{}/model".format(mlflow.active_run().info.run_id), model_name)
 
     

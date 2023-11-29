@@ -6,3 +6,5 @@ numpy==1.24.3
 scikit-learn==1.3.0
 datetime
 joblib==1.2.0
+mlflow
+azureml-mlflow
