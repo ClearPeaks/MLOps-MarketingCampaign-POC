@@ -23,6 +23,7 @@ def training_component(
     X_train_input: Input(type='uri_file'),
     y_train_input: Input(type='uri_file'),
     model_output: Output(type='uri_file'),
+    run_id_output: Output(type='uri_file'),
 ):
 
     # Set names
@@ -53,5 +54,9 @@ def training_component(
         # Register the model
         mlflow.register_model(
             "runs:/{}/model".format(mlflow.active_run().info.run_id), model_name)
+        
+        # Save mlflow run id
+        run_id_df = pd.DataFrame({"run_id":[mlflow.active_run().info.run_id]})
+        run_id_df.to_csv(run_id_output, index=False)
 
     

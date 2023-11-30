@@ -98,7 +98,8 @@ def marketing_campaign_prediction(pipeline_input_data):
     # Scoring
     scoring_node = scoring_component(X_test_input=encoding_node.outputs.X_test_output,
                                      y_test_input=split_data_node.outputs.y_test_data,
-                                     model_input=training_node.outputs.model_output)
+                                     model_input=training_node.outputs.model_output,
+                                     run_id_input=training_node.outputs.run_id_output)
 
 # Instantiate the pipeline
 pipeline_job = marketing_campaign_prediction(pipeline_input_data=available_data)
