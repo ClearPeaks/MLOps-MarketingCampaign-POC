@@ -20,7 +20,9 @@ ml_client = MLClient(
 
 # Wait for Azure ML pipeline to finish
 # ======================================================================================================
-ws = Workspace.from_config()
+ws = Workspace(subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
+               resource_group_name="RG-ADA-MLOPS-POC",
+               workspace_name="azu-ml-ada-mlops-poc",)
 experiment = Experiment(workspace=ws, name='marketing_pipeline_test_3')
 
 status = ""
