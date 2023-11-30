@@ -8,6 +8,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score
 from sklearn.metrics import accuracy_score
 
+import mlflow
+from mlflow.tracking import MlflowClient
+
 @command_component(
     name="scoring",
     display_name="Scoring",
