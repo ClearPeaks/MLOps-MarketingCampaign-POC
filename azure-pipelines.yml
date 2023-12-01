@@ -28,6 +28,6 @@ steps:
     azureSubscription: 'ml-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'python src/compare_and_promote_model.py'
+    inlineScript: 'python src/compare-and-promote-send.py'
   displayName: 'Compare and promote model'
 
