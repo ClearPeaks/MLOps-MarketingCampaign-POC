@@ -25,13 +25,15 @@ else:
     prod_run = client.get_run(prod_run_id)
     prod_metrics = prod_run.data.metrics
     prod_accuracy = prod_metrics['test_accuracy']
+    prod_f1 = prod_metrics['test_f1_score']
 
     # Obtaining this run's model metrics
     new_metrics = client.get_run(last_model.run_id).data.metrics
     new_accuracy = new_metrics['test_accuracy']
+    new_f1 = new_metrics['test_f1_score']
 
     # Promoting new model if it is better than production model
-    if new_accuracy > prod_accuracy:
+    if new_accuracy > prod_accuracy and new_f1 > prod_f1:
         # obtain model versions            
         to_prod_version = last_model.version
         to_none_version = client.search_model_versions("run_id='{}'".format(prod_run_id))[0].version

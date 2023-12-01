@@ -34,7 +34,7 @@ def training_component(
     y_train = pd.read_csv(y_train_input, sep=';')
 
     # Initialize model
-    rf_model = RandomForestClassifier(n_estimators = 100, random_state=42)
+    rf_model = RandomForestClassifier(n_estimators = 120, random_state=42)
 
     # Start MLflow run
     with mlflow.start_run():
