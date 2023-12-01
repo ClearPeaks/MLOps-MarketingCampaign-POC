@@ -5,7 +5,6 @@ from azure.ai.ml import MLClient            # Interating with Azure ML services 
 from azureml.core import Experiment
 from azureml.core import Workspace
 import time
-import mlflow
 
 
 # Get a handle to workspace
@@ -34,39 +33,18 @@ while status != "Completed":
     time.sleep(1)
 
 
-# Coompare and promote model
+# Sumit job
 # ======================================================================================================
 
-# Setting the mlflow client for advanced operations
-client = mlflow.tracking.MlflowClient()
+# Configure job
+job = command(
+    code="./src",
+    command="python compare-and-promote-script.py",
+    environment="mcr.microsoft.com/azureml/curated/sklearn-1.1:17",
+    compute="shared-compute-poc",
+    display_name="Compare and promote model",
+    experiment_name="marketing_pipeline_test_3"
+)
 
-model_name = "MC-ResponsePredictor"
-
-production_models = client.get_latest_versions(model_name, stages=["Production"])
-last_model = client.get_latest_versions(model_name, stages=["None"])[0]
-
-# No models in prdocution yet
-if len(production_models) == 0:
-    client.transition_model_version_stage(model_name, last_model.version, "Production")
-
-# Compare with model in production
-else:
-    # Obtaining production model metrics
-    prod_run_id = production_models[0].run_id
-    prod_run = client.get_run(prod_run_id)
-    prod_metrics = prod_run.data.metrics
-    prod_accuracy = prod_metrics['test_accuracy']
-
-    # Obtaining this run's model metrics
-    new_metrics = client.get_run(last_model.run_id).data.metrics
-    new_accuracy = new_metrics['test_accuracy']
-
-    # Promoting new model if it is better than production model
-    if new_accuracy > prod_accuracy:
-        # obtain model versions            
-        to_prod_version = last_model.version
-        to_none_version = client.search_model_versions("run_id='{}'".format(prod_run_id))[0].version
-
-        # Transition new model to Production stage and old model to None
-        client.transition_model_version_stage(model_name, to_prod_version, "Production")
-        client.transition_model_version_stage(model_name, to_none_version, "None")
+# Submit job
+ml_client.create_or_update(job)

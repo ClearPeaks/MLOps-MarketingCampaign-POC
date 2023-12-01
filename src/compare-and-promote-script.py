@@ -1,34 +1,6 @@
 # Library imports
 # ======================================================================================================
-from azure.identity import DefaultAzureCredential           # Simplified way to obtain credentials
-from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
-from azureml.core import Experiment, Workspace
-import time
 import mlflow
-
-
-# Get a handle to workspace
-# ======================================================================================================
-ml_client = MLClient(
-    DefaultAzureCredential(),
-    subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
-    resource_group_name="RG-ADA-MLOPS-POC",
-    workspace_name="azu-ml-ada-mlops-poc",
-)
-
-
-# Wait for Azure ML pipeline to finish
-# ======================================================================================================
-ws = Workspace.from_config()
-experiment = Experiment(workspace=ws, name='marketing_pipeline_test_3')
-
-status = ""
-while status != "Completed":
-    for run in experiment.get_runs():
-        if run.get_status() == "Completed":
-            status = "Completed"
-        break
-    time.sleep(1)
 
 
 # Coompare and promote model
