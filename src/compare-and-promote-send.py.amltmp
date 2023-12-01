@@ -2,9 +2,11 @@
 # ======================================================================================================
 from azure.identity import DefaultAzureCredential           # Simplified way to obtain credentials
 from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
+from azure.ai.ml import command
 from azureml.core import Experiment
 from azureml.core import Workspace
 import time
+
 
 
 # Get a handle to workspace
