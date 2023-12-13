@@ -31,3 +31,11 @@ steps:
     inlineScript: 'python src/compare-and-promote-send.py'
   displayName: 'Compare and promote model'
 
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'ml-service-connection'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'python src/deploy-send-job.py'
+  displayName: 'Deploy'
+
