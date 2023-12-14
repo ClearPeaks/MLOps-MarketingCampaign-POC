@@ -5,6 +5,7 @@ from azure.identity import DefaultAzureCredential           # Simplified way to 
 from azure.ai.ml import MLClient                            # Client for interacting with Azure Machine Learning services, including managing datasets, models, etc.
 from azure.ai.ml.entities import Environment                # Represents an environment in Azure ML, used to define runtime context
 from azure.ai.ml.entities import ManagedOnlineDeployment    # Used to configure and manage online deployments in Azure ML
+from azure.ai.ml.entities import ManagedOnlineEndpoint    # Used to configure and manage online deployments in Azure ML
 from azure.ai.ml.entities import CodeConfiguration          # Specifies code configuration for Azure ML projects, including script and scoring file details
 
 # MLFLOW
