@@ -1,0 +1,12 @@
+name: deploy-job-env
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip=23.2.1
+  - pip:
+    - mlflow==2.8.1
+    - azureml-mlflow==1.54.0
+    - azureml-core==1.54.0
+    - mldesigner==0.1.0b12
+    - azure-ai-ml==1.12.1
