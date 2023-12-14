@@ -64,9 +64,14 @@ if latest_version == prod_version:
     # ================================================================
     # If endpoint doesn't exist, create it
     try:
-        endpoint = deployment_client.get_endpoint(endpoint=endpoint_name)
+        endpoint = ml_client.online_endpoints.get(name=endpoint_name)
     except:
-        endpoint = deployment_client.create_endpoint(endpoint_name)
+        endpoint = ManagedOnlineEndpoint(
+            name = endpoint_name, 
+            description="Inference endpoint",
+            auth_mode="key"
+        )
+        ml_client.online_endpoints.begin_create_or_update(endpoint).result()
     
 
     # Define the environment of the new deployment
