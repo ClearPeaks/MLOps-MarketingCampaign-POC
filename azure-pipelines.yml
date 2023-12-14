@@ -36,6 +36,6 @@ steps:
     azureSubscription: 'ml-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'python src/deploy-script.py'
+    inlineScript: 'python src/deploy-send-job.py'
   displayName: 'Deploy'
 
