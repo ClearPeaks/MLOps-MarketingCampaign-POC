@@ -44,7 +44,7 @@ job = command(
     code="./src",
     command="python deploy-script.py",
     environment=Environment(
-        conda_file="conda-deploy-job.yaml",
+        conda_file="conda.yaml",
         image="mcr.microsoft.com/azureml/curated/minimal-ubuntu20.04-py38-cpu-inference:21",
     ),
     compute="shared-compute-poc",
