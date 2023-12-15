@@ -9,7 +9,7 @@ import mlflow
 # Setting the mlflow client for advanced operations
 client = mlflow.tracking.MlflowClient()
 
-model_name = "Marketing-Response-Predictor"
+model_name = "Marketing-Predictor"
 
 production_models = client.get_latest_versions(model_name, stages=["Production"])
 last_model = client.get_latest_versions(model_name, stages=["None"])[0]

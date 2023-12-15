@@ -25,7 +25,7 @@ ml_client = MLClient(
 ws = Workspace(subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
                resource_group="RG-ADA-MLOPS-POC",
                workspace_name="azu-ml-ada-mlops-poc",)
-experiment = Experiment(workspace=ws, name='marketing-pipeline-demo')
+experiment = Experiment(workspace=ws, name='marketing-pipeline-demo-v2')
 
 status = ""
 while status != "Completed":
@@ -49,7 +49,7 @@ job = command(
     ),
     compute="shared-compute-poc",
     display_name="Deploy",
-    experiment_name="marketing-pipeline-demo"
+    experiment_name="marketing-pipeline-demo-v2"
 )
 
 # Submit job

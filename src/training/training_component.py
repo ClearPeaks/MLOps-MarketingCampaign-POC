@@ -27,7 +27,7 @@ def training_component(
 ):
 
     # Set names
-    model_name = "Marketing-Response-Predictor"
+    model_name = "Marketing-Predictor"
 
     # Read data from input paths
     X_train = pd.read_csv(X_train_input, sep=';')
