@@ -17,7 +17,7 @@ from mlflow.deployments import get_deploy_client            # Function to obtain
 # ======================================================================================================
 
 # Specify the authority URL explicitly
-authority_url = "https://login.windows.net/2f4a9838-26b7-47ee-be60-ccc1fdec5953"
+authority_url = 'https://login.windows.net/d5b4529b-7457-49d9-931b-7c7f9b9eed54'
 
 # Create the DefaultAzureCredential with the specified authority
 credential = DefaultAzureCredential(authority=authority_url)
