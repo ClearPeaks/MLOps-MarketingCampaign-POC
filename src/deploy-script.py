@@ -15,8 +15,16 @@ from mlflow.deployments import get_deploy_client            # Function to obtain
 
 # Get handle to workspace
 # ======================================================================================================
+
+# Specify the authority URL explicitly
+authority_url = "https://login.windows.net/2f4a9838-26b7-47ee-be60-ccc1fdec5953"
+
+# Create the DefaultAzureCredential with the specified authority
+credential = DefaultAzureCredential(authority=authority_url)
+
 ml_client = MLClient(
-    DefaultAzureCredential(),
+    # DefaultAzureCredential(),
+    credential,
     subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
     resource_group_name="RG-ADA-MLOPS-POC",
     workspace_name="azu-ml-ada-mlops-poc",
@@ -50,6 +58,10 @@ latest_version = client.search_model_versions(f"name='{model_name}'")[0].version
 # Get version of the model in production
 prod_model = client.get_latest_versions(model_name, stages=["Production"])[0]
 prod_version = prod_model.version
+
+# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
+endpoint = ml_client.online_endpoints.get(name=endpoint_name)
+# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
 
 # Check if the versions are the same
 if latest_version == prod_version:
