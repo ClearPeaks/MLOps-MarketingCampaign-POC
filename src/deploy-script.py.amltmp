@@ -60,7 +60,7 @@ prod_model = client.get_latest_versions(model_name, stages=["Production"])[0]
 prod_version = prod_model.version
 
 # !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
-endpoint = ml_client.online_endpoints.get(name=endpoint_name)
+# endpoint = ml_client.online_endpoints.get(name=endpoint_name)
 # !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
 
 # Check if the versions are the same
