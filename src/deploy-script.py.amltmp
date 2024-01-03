@@ -64,7 +64,10 @@ endpoint = ml_client.online_endpoints.get(name=endpoint_name)
 # !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
 
 # Check if the versions are the same
-if latest_version == prod_version:
+# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
+# FORCE IF, should be: "if latest_version == prod_version:"
+if True:
+# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
     print("The new model should be deployed")
 
     # Define the model that is going to be deployed
