@@ -318,19 +318,14 @@ def data_drift_component():
 
     # Retrieve everything from the run
     metrics = monitor.get_output(start_backfill, end_backfill)
-
-    # Get either true or false for every time period (days, weeks, ...) if there has been drift or not
-    bool_drift_by_period = [day['result'][0]['has_drift'] for day in metrics[0]]
-
-    # Only necessary to check most recent data
-    bool_drift_recent = bool_drift_by_period[:-1][0]
+    drift_coefficient = metrics[1][0]['metrics'][0]['dataset_metrics'][0]['value']
 
 
 
     # ### 6. Update datasets depending on whether there is data drift or not
 
     # Check if there is drift in at least one day
-    if bool_drift_recent:
+    if drift_coefficient > drift_threshold:
         # There is drift in the new data
         
         # AVAILABLE DATA UPDATE (train + test)
