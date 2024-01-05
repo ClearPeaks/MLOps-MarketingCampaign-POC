@@ -1,0 +1,18 @@
+name: ddd-env
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip=23.2.1
+  - pip:
+    - azureml-core==1.54.0
+    - azure-ai-ml==1.12.1
+    - azureml-datadrift==1.54.0
+    - mldesigner==0.1.0b12
+    - scikit-learn==1.3.0
+    - pandas
+    - numpy
+    - cloudpickle==2.2.1
+    - azureml-fsspec
+    - psutil~=5.8.0
+    - azureml-defaults

@@ -59,15 +59,8 @@ latest_version = client.search_model_versions(f"name='{model_name}'")[0].version
 prod_model = client.get_latest_versions(model_name, stages=["Production"])[0]
 prod_version = prod_model.version
 
-# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
-# endpoint = ml_client.online_endpoints.get(name=endpoint_name)
-# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
-
 # Check if the versions are the same
-# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
-# FORCE IF, should be: "if latest_version == prod_version:"
-if True:
-# !!!!!!!!!!!! JUST TO TEST !!!!!!!!!!!!
+if latest_version == prod_version:
     print("The new model should be deployed")
 
     # Define the model that is going to be deployed
