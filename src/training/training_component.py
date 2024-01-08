@@ -23,6 +23,7 @@ def training_component(
     X_train_input: Input(type='uri_file'),
     y_train_input: Input(type='uri_file'),
     model_output: Output(type='uri_file'),
+    run_id_input: Input(type='uri_file'),
     run_id_output: Output(type='uri_file'),
 ):
 
@@ -32,12 +33,14 @@ def training_component(
     # Read data from input paths
     X_train = pd.read_csv(X_train_input, sep=';')
     y_train = pd.read_csv(y_train_input, sep=';')
+    run_id = pd.read_csv(run_id_input)
+    run_id = run_id['run_id'][0]
 
     # Initialize model
-    rf_model = RandomForestClassifier(n_estimators = 100, random_state=42)
+    rf_model = RandomForestClassifier(n_estimators = 150, random_state=42)
 
     # Start MLflow run
-    with mlflow.start_run():
+    with mlflow.start_run(run_id=run_id):
 
         # Fit model
         rf_model.fit(X_train, y_train)

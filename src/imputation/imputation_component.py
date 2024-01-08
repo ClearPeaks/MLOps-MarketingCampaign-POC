@@ -6,6 +6,9 @@ import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 
+import mlflow
+from mlflow.tracking import MlflowClient
+
 @command_component(
     name="imputation",
     display_name="Imputation",
@@ -21,6 +24,7 @@ def imputation_component(
     X_test_input: Input(type='uri_file'),
     X_train_output: Output(type='uri_file'),
     X_test_output: Output(type='uri_file'),
+    run_id_output: Output(type='uri_file'),
 ):
     # Read data from input paths
     X_train = pd.read_csv(X_train_input, sep=';')
@@ -34,6 +38,27 @@ def imputation_component(
 
     # Fit the imputer with the training data
     iter_imputer.fit(X_train[numeric_cols])
+
+    # Save the imputer as an artifact
+    with mlflow.start_run():
+        # Define the path to save the fitted imputer
+        directory = './artifacts-' + model_run_id + '/'
+        filename = 'imputer.pkl'
+        imputer_path = os.path.join(directory, filename)
+
+        # Check if the directory exists, if not create it
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # Save the fitted imputer
+        joblib.dump(imp, imputer_path)
+
+        # Log the fitted imputer as an artifact
+        mlflow.log_artifact(imputer_path)
+
+        # Save mlflow run id
+        run_id_df = pd.DataFrame({"run_id":[mlflow.active_run().info.run_id]})
+        run_id_df.to_csv(run_id_output, index=False)
     
     # Impute the data
     X_train[numeric_cols] = iter_imputer.transform(X_train[numeric_cols])
