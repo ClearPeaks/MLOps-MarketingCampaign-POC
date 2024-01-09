@@ -43,7 +43,7 @@ def normalization_component(
     # Fit the scaler with the training data
     scaler.fit(X_train[numeric_cols])
 
-    # Save the fitted scaler as an artifact
+    # Save the scaler as an artifact
     with mlflow.start_run():
         # Define the path to save the fitted scaler
         directory = './artifacts-' + str(mlflow.active_run().info.run_id) + '/'
