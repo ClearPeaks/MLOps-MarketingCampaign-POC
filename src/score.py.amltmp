@@ -45,10 +45,16 @@ def run(raw_data):
     # Download artifacts
     mlflow.artifacts.download_artifacts(artifact_uri = artifact_uri + '/imputer.pkl',
                                         dst_path = local_dir_for_retrieved_artifacts)
+    
+    mlflow.artifacts.download_artifacts(artifact_uri = artifact_uri + '/scaler.pkl',
+                                        dst_path = local_dir_for_retrieved_artifacts)
 
     # Load artifacts
     retrieved_imputer_path = os.path.join(local_dir_for_retrieved_artifacts, "imputer.pkl")
     imputer = joblib.load(retrieved_imputer_path)
+
+    retrieved_scaler_path = os.path.join(local_dir_for_retrieved_artifacts, "scaler.pkl")
+    scaler = joblib.load(retrieved_scaler_path)
 
 
     # Preprocessing
@@ -103,6 +109,7 @@ def run(raw_data):
 
     # ///// NORMALIZATION /////
 
+    data[numeric_cols] = scaler.transform(data[numeric_cols])
 
 
     # ///// ENCODING /////

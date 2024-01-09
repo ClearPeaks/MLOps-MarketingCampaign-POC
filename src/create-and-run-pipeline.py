@@ -88,14 +88,15 @@ def marketing_campaign_prediction(pipeline_input_data):
                                            X_test_input=split_data_node.outputs.X_test_data)
     # Normalization
     normalization_node = normalization_component(X_train_input=imputation_node.outputs.X_train_output,
-                                                 X_test_input=imputation_node.outputs.X_test_output)
+                                                 X_test_input=imputation_node.outputs.X_test_output,
+                                                 run_id_input=imputation_node.outputs.run_id_output)
     # Encoding
     encoding_node = encoding_component(X_train_input=normalization_node.outputs.X_train_output,
                                        X_test_input=normalization_node.outputs.X_test_output)
     # Training
     training_node = training_component(X_train_input=encoding_node.outputs.X_train_output,
                                        y_train_input=split_data_node.outputs.y_train_data,
-                                       run_id_input=imputation_node.outputs.run_id_output)
+                                       run_id_input=normalization_node.outputs.run_id_output)
     # Scoring
     scoring_node = scoring_component(X_test_input=encoding_node.outputs.X_test_output,
                                      y_test_input=split_data_node.outputs.y_test_data,
