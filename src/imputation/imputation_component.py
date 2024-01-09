@@ -42,7 +42,7 @@ def imputation_component(
     # Save the imputer as an artifact
     with mlflow.start_run():
         # Define the path to save the fitted imputer
-        directory = './artifacts-' + model_run_id + '/'
+        directory = './artifacts-' + str(mlflow.active_run().info.run_id) + '/'
         filename = 'imputer.pkl'
         imputer_path = os.path.join(directory, filename)
 
