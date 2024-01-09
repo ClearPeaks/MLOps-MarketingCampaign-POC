@@ -1,6 +1,7 @@
 # Library imports
 # ======================================================================================================
 from azure.identity import DefaultAzureCredential           # Simplified way to obtain credentials
+from azureml.core.authentication import MsiAuthentication
 from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
 from azure.ai.ml import command
 from azureml.core import Experiment
@@ -12,7 +13,7 @@ import time
 # Get a handle to workspace
 # ======================================================================================================
 ml_client = MLClient(
-    DefaultAzureCredential(),
+    MsiAuthentication(),
     subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
     resource_group_name="RG-ADA-MLOPS-POC",
     workspace_name="azu-ml-ada-mlops-poc",
