@@ -53,7 +53,7 @@ def imputation_component(
             os.makedirs(directory)
 
         # Save the fitted imputer
-        joblib.dump(imp, imputer_path)
+        joblib.dump(iter_imputer, imputer_path)
 
         # Log the fitted imputer as an artifact
         mlflow.log_artifact(imputer_path)

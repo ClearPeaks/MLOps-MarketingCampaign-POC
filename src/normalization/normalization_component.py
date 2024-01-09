@@ -55,7 +55,7 @@ def normalization_component(
             os.makedirs(directory)
 
         # Save the fitted scaler
-        joblib.dump(imp, scaler_path)
+        joblib.dump(scaler, scaler_path)
 
         # Log the fitted scaler as an artifact
         mlflow.log_artifact(scaler_path)
