@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 import os
+import joblib
 
 import mlflow
 from mlflow.tracking import MlflowClient

@@ -8,6 +8,7 @@ from mlflow.pyfunc.scoring_server import infer_and_parse_json_input, predictions
 import numpy as np
 import pandas as pd
 from datetime import datetime
+import joblib
 
 
 def init():
