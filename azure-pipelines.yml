@@ -38,4 +38,3 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 'python src/deploy-send-job.py'
   displayName: 'Deploy'
-
