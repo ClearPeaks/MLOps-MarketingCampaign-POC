@@ -32,7 +32,7 @@ def imputation_component(
     X_train = pd.read_csv(X_train_input, sep=';')
     X_test = pd.read_csv(X_test_input, sep=';')
 
-    # Select numeric columns
+    # Select the numeric columns
     numeric_cols = X_train.select_dtypes(include=np.number).columns.tolist()
 
     # Initialize the imputer
