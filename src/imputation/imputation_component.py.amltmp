@@ -28,7 +28,7 @@ def imputation_component(
     X_test_output: Output(type='uri_file'),
     run_id_output: Output(type='uri_file'),
 ):
-    # Read data from input paths
+    # Read data from the input paths
     X_train = pd.read_csv(X_train_input, sep=';')
     X_test = pd.read_csv(X_test_input, sep=';')
 
