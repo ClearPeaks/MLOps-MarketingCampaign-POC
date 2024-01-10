@@ -37,7 +37,7 @@ def training_component(
     run_id = run_id['run_id'][0]
 
     # Initialize the model
-    rf_model = RandomForestClassifier(n_estimators = 150, random_state=42)
+    rf_model = RandomForestClassifier(n_estimators = 100, random_state=42)
 
     # Start MLflow run
     with mlflow.start_run(run_id=run_id):

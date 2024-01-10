@@ -99,7 +99,8 @@ if latest_version == prod_version:
         endpoint = ManagedOnlineEndpoint(
             name = endpoint_name, 
             description="Inference endpoint",
-            auth_mode="key"
+            auth_mode = "key",
+            tags = {'createdBy':'Compute'}
         )
         ml_client.online_endpoints.begin_create_or_update(endpoint).result()
     
@@ -129,6 +130,7 @@ if latest_version == prod_version:
         ),
         instance_type="Standard_D2as_v4",
         instance_count=1,
+        tags = {'createdBy':'Compute'}
     )
     print("The name of the new deployment is:", deployment_name)
 
