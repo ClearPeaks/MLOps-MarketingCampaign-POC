@@ -24,7 +24,7 @@ job = command(
     environment="AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest",
     compute="shared-compute-poc",
     display_name="Compare and promote model",
-    experiment_name="marketing-pipeline-demo-v2"
+    experiment_name="marketing-pipeline-demo-v3"
 )
 
 # Submit job

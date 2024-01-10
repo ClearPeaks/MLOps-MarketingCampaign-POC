@@ -28,7 +28,7 @@ def training_component(
 ):
 
     # Set names
-    model_name = "Marketing-Predictor"
+    model_name = "Response-Predictor"
 
     # Read data from input paths
     X_train = pd.read_csv(X_train_input, sep=';')
@@ -36,7 +36,7 @@ def training_component(
     run_id = pd.read_csv(run_id_input)
     run_id = run_id['run_id'][0]
 
-    # Initialize model
+    # Initialize the model
     rf_model = RandomForestClassifier(n_estimators = 150, random_state=42)
 
     # Start MLflow run

@@ -110,7 +110,7 @@ pipeline_job = marketing_campaign_prediction(pipeline_input_data=available_data)
 # Submit pipeline
 # ======================================================================================================
 pipeline_job = ml_client.jobs.create_or_update(
-    pipeline_job, experiment_name="marketing-pipeline-demo-v2"
+    pipeline_job, experiment_name="marketing-pipeline-demo-v3"
 )
 
 

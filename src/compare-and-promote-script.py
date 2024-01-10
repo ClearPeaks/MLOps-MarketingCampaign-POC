@@ -11,15 +11,15 @@ import time
 ws = Workspace(subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
                resource_group="RG-ADA-MLOPS-POC",
                workspace_name="azu-ml-ada-mlops-poc",)
-experiment = Experiment(workspace=ws, name='marketing-pipeline-demo-v2')
+experiment = Experiment(workspace=ws, name='marketing-pipeline-demo-v3')
 
 status = ""
 while status != "Completed":
     for run in experiment.get_runs():
-        if run.get_status() == "Completed":
-            status = "Completed"
-        break
-    time.sleep(1)
+        if run.display_name == 'marketing_campaign_prediction' and run.get_status() == "Running":
+            break
+        status = 'Completed'
+    time.sleep(2)
 
 
 # Coompare and promote model
@@ -28,7 +28,7 @@ while status != "Completed":
 # Setting the mlflow client for advanced operations
 client = mlflow.tracking.MlflowClient()
 
-model_name = "Marketing-Predictor"
+model_name = "Response-Predictor"
 
 production_models = client.get_latest_versions(model_name, stages=["Production"])
 last_model = client.get_latest_versions(model_name, stages=["None"])[0]

@@ -4,10 +4,6 @@ from azure.identity import DefaultAzureCredential           # Simplified way to 
 from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
 from azure.ai.ml import command
 from azure.ai.ml.entities import Environment                # Represents an environment in Azure ML, used to define runtime context
-from azureml.core import Experiment
-from azureml.core import Workspace
-import time
-
 
 
 # Get a handle to workspace
@@ -18,22 +14,6 @@ ml_client = MLClient(
     resource_group_name="RG-ADA-MLOPS-POC",
     workspace_name="azu-ml-ada-mlops-poc",
 )
-
-
-# Wait for Azure ML job to finish
-# ======================================================================================================
-ws = Workspace(subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
-               resource_group="RG-ADA-MLOPS-POC",
-               workspace_name="azu-ml-ada-mlops-poc",)
-experiment = Experiment(workspace=ws, name='marketing-pipeline-demo-v2')
-
-status = ""
-while status != "Completed":
-    for run in experiment.get_runs():
-        if run.get_status() == "Completed":
-            status = "Completed"
-        break
-    time.sleep(1)
 
 
 # Sumit job
@@ -49,7 +29,7 @@ job = command(
     ),
     compute="shared-compute-poc",
     display_name="Deploy",
-    experiment_name="marketing-pipeline-demo-v2"
+    experiment_name="marketing-pipeline-demo-v3"
 )
 
 # Submit job

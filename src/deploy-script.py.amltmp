@@ -7,10 +7,31 @@ from azure.ai.ml.entities import Environment                # Represents an envi
 from azure.ai.ml.entities import ManagedOnlineDeployment    # Used to configure and manage online deployments in Azure ML
 from azure.ai.ml.entities import ManagedOnlineEndpoint    # Used to configure and manage online deployments in Azure ML
 from azure.ai.ml.entities import CodeConfiguration          # Specifies code configuration for Azure ML projects, including script and scoring file details
+from azureml.core import Experiment
+from azureml.core import Workspace
 
 # MLFLOW
 import mlflow                                               # Managing the end-to-end machine learning lifecycle
 from mlflow.deployments import get_deploy_client            # Function to obtain a client for deploying ML models via MLflow
+
+# OTHERS
+import time
+
+
+# Wait for compare and promote job to finish
+# ======================================================================================================
+ws = Workspace(subscription_id="27a6aae6-ce60-4ae4-a06e-cfe9c1e824d4",
+               resource_group="RG-ADA-MLOPS-POC",
+               workspace_name="azu-ml-ada-mlops-poc",)
+experiment = Experiment(workspace=ws, name='marketing-pipeline-demo-v3')
+
+status = ""
+while status != "Completed":
+    for run in experiment.get_runs():
+        if run.display_name == 'Compare and promote model' and run.get_status() == "Running":
+            break
+        status = 'Completed'
+    time.sleep(2)
 
 
 # Get handle to workspace
@@ -43,7 +64,7 @@ deployment_client = get_deploy_client(mlflow.get_tracking_uri())
 # Define the names
 # ======================================================================================================
 # Model name
-model_name = "Marketing-Predictor"
+model_name = "Response-Predictor"
 
 # Endpoint name
 endpoint_name = "MC-Prod-Endpoint-4242"
