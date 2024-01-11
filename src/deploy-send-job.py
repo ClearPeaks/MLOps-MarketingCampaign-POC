@@ -21,7 +21,7 @@ ml_client = MLClient(
 # ======================================================================================================
 
 # Before summiting the job, add extra time to make sure other process have finished
-time.sleep(90)
+time.sleep(300)
 
 # Configure job
 job = command(
