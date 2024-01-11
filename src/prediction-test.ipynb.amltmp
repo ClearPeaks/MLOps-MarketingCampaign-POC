@@ -146,6 +146,19 @@
       }
     },
     {
+      "cell_type": "markdown",
+      "source": [
+        "### Get predictions from the endpoint"
+      ],
+      "metadata": {
+        "nteract": {
+          "transient": {
+            "deleting": false
+          }
+        }
+      }
+    },
+    {
       "cell_type": "code",
       "source": [
         "predictions = deployment_client.predict(endpoint=endpoint_name, df={\"dataframe_split\": samples.to_dict(orient='split')})\n",
