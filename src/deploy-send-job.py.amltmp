@@ -4,6 +4,7 @@ from azure.identity import DefaultAzureCredential           # Simplified way to 
 from azure.ai.ml import MLClient                            # Interating with Azure ML services (datasets, moels, ...)
 from azure.ai.ml import command                             # Define a command job
 from azure.ai.ml.entities import Environment                # Represents an environment in Azure ML, used to define runtime context
+import time
 
 
 # Get a handle to workspace
