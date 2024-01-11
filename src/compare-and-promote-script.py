@@ -19,7 +19,7 @@ while status != "Completed":
         if run.display_name == 'marketing_campaign_prediction' and run.get_status() == "Running":
             break
         status = 'Completed'
-    time.sleep(2)
+    time.sleep(5)
 
 
 # Coompare and promote model

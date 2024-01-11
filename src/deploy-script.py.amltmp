@@ -31,7 +31,7 @@ while status != "Completed":
         if run.display_name == 'Compare and promote model' and run.get_status() == "Running":
             break
         status = 'Completed'
-    time.sleep(2)
+    time.sleep(5)
 
 
 # Get handle to workspace
@@ -64,7 +64,7 @@ deployment_client = get_deploy_client(mlflow.get_tracking_uri())
 # Define the names
 # ======================================================================================================
 # Model name
-model_name = "Response-Predictor"
+model_name = "Test-Predictor"
 
 # Endpoint name
 endpoint_name = "MC-Prod-Endpoint-4242"
