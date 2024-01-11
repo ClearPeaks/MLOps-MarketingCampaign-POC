@@ -2,7 +2,8 @@
 # ======================================================================================================
 from azure.identity import DefaultAzureCredential           # Simplified way to obtain credentials
 from azure.ai.ml import MLClient            # Interating with Azure ML services (datasets, moels, ...)
-from azure.ai.ml import command
+from azure.ai.ml import command             # Define a command job
+import time
 
 
 # Get a handle to workspace
@@ -15,8 +16,13 @@ ml_client = MLClient(
 )
 
 
+
 # Sumit job
 # ======================================================================================================
+
+# Before summiting the job, add extra time to make sure other process have finished
+time.sleep(90)
+
 # Configure job
 job = command(
     code="./src",

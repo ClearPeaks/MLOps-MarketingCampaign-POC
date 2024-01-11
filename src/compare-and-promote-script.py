@@ -28,7 +28,7 @@ while status != "Completed":
 # Setting the mlflow client for advanced operations
 client = mlflow.tracking.MlflowClient()
 
-model_name = "Response-Predictor"
+model_name = "Test-Predictor-2"
 
 production_models = client.get_latest_versions(model_name, stages=["Production"])
 last_model = client.get_latest_versions(model_name, stages=["None"])[0]

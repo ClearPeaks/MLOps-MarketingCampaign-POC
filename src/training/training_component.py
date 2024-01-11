@@ -28,7 +28,7 @@ def training_component(
 ):
 
     # Set names
-    model_name = "Response-Predictor"
+    model_name = "Test-Predictor-2"
 
     # Read data from input paths
     X_train = pd.read_csv(X_train_input, sep=';')

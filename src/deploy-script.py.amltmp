@@ -64,7 +64,7 @@ deployment_client = get_deploy_client(mlflow.get_tracking_uri())
 # Define the names
 # ======================================================================================================
 # Model name
-model_name = "Test-Predictor"
+model_name = "Test-Predictor-2"
 
 # Endpoint name
 endpoint_name = "MC-Prod-Endpoint-4242"
