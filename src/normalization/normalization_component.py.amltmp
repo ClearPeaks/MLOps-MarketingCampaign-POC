@@ -18,6 +18,7 @@ from mlflow.tracking import MlflowClient
         conda_file=Path(__file__).parent / "conda.yaml",
         image="mcr.microsoft.com/azureml/curated/sklearn-1.1:17",
     ),
+    is_deterministic = False
 )
 
 def normalization_component(

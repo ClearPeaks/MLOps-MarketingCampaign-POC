@@ -11,6 +11,7 @@ import pandas as pd
         conda_file=Path(__file__).parent / "conda.yaml",
         image="mcr.microsoft.com/azureml/curated/sklearn-1.1:17",
     ),
+    is_deterministic = False
 )
 
 def encoding_component(

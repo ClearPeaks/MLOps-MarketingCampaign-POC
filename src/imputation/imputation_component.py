@@ -19,6 +19,7 @@ from mlflow.tracking import MlflowClient
         conda_file=Path(__file__).parent / "conda.yaml",
         image="mcr.microsoft.com/azureml/curated/sklearn-1.1:17",
     ),
+    is_deterministic = False
 )
 
 def imputation_component(
@@ -41,7 +42,7 @@ def imputation_component(
     # Fit the imputer with the training data
     iter_imputer.fit(X_train[numeric_cols])
 
-    # Save the imputer as artifact
+    # Save the imputer as an artifact
     with mlflow.start_run():
         # Define the path to save the fitted imputer
         directory = './artifacts-' + str(mlflow.active_run().info.run_id) + '/'

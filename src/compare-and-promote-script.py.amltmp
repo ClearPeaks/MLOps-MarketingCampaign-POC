@@ -15,11 +15,14 @@ experiment = Experiment(workspace=ws, name='marketing-pipeline-demo-v3')
 
 status = ""
 while status != "Completed":
+    individual_status = []
     for run in experiment.get_runs():
-        if run.display_name == 'marketing_campaign_prediction' and run.get_status() == "Running":
-            break
+        if run.display_name == 'marketing_campaign_prediction':
+            individual_status.append(run.get_status())
+    if all(x != 'Running' for x in individual_status):
         status = 'Completed'
-    time.sleep(5)
+    else:
+        time.sleep(30)
 
 
 # Coompare and promote model
